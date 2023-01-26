@@ -20,7 +20,7 @@ If you would like to use [Pest PHP](https://pestphp.com) for testing, you may us
 
 :::danger New Applications Only
 
-Jetstream should only be installed into new Laravel applications. Attempting to install Jetstream into an existing Laravel application will result in unexpected behavior and issues.
+Jetstream should only be installed into new Laravel applications, because it alters the initial Laravel "create_users_table". Attempting to install Jetstream into an existing Laravel application will result in unexpected behavior and issues, because the initial table lack columns Jetstream requires.
 :::
 
 #### Install Jetstream With Livewire
@@ -56,6 +56,7 @@ npm install
 npm run build
 php artisan migrate
 ```
+If you did run the migration before installing Jetstream, then run `php artisan migrate:fresh` rebuild the database.
 
 ## Application Logo
 
@@ -69,11 +70,17 @@ If you are using the Livewire stack, you should first publish the Livewire stack
 php artisan vendor:publish --tag=jetstream-views
 ```
 
-Next, you should customize the SVGs located in the `resources/views/vendor/jetstream/components/application-logo.blade.php`, `resources/views/vendor/jetstream/components/authentication-card-logo.blade.php`, and `resources/views/vendor/jetstream/components/application-mark.blade.php` components.
+Next, you should customize the SVGs located in 
+* `resources/views/vendor/jetstream/components/application-logo.blade.php`, 
+* `resources/views/vendor/jetstream/components/authentication-card-logo.blade.php`, and 
+* `resources/views/vendor/jetstream/components/application-mark.blade.php`.
 
 ### Inertia
 
-If you are using the Inertia stack, you should customize the SVGs located in `resources/js/Components/AuthenticationCardLogo.vue`, `resources/js/Components/ApplicationLogo.vue`, and `resources/js/Components/ApplicationMark.vue`.
+If you are using the Inertia stack, you should customize the SVGs located in 
+* `resources/js/Components/AuthenticationCardLogo.vue`, 
+* `resources/js/Components/ApplicationLogo.vue`, and 
+* `resources/js/Components/ApplicationMark.vue`.
 
 After customizing these components, you should rebuild your assets:
 
